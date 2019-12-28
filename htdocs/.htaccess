@@ -1,0 +1,40 @@
+RewriteEngine on
+
+# Redirect index to KPI list
+RewriteRule ^$ /kpi [R]
+
+# Set content type to reroute to correct controller
+SetEnvIf Request_URI "^.*" CONTENT_TYPE=html
+SetEnvIfNoCase Accept "application/json" CONTENT_TYPE=json
+
+# Create new entry
+#   /kpi        [POST] REST API
+#   /kpi/new    [GET]
+RewriteCond  %{REQUEST_METHOD}  "POST" [NC]
+RewriteRule ^([a-zA-Z0-9_]+)/?$                 /content/controller/$1/%{ENV:CONTENT_TYPE}/new.php [QSA]
+RewriteRule ^([a-zA-Z0-9_]+)/new/?$             /content/controller/$1/%{ENV:CONTENT_TYPE}/new.php [QSA]
+
+# List all entries
+#   /kpi
+RewriteRule ^([a-zA-Z0-9_]+)/?$                 /content/controller/$1/%{ENV:CONTENT_TYPE}/list.php [QSA]
+
+# Edit entry
+#   /kpi/0      [PUT] REST API
+#   /kpi/0/edit
+RewriteCond  %{REQUEST_METHOD}  "PUT" [NC]
+RewriteRule ^([a-zA-Z0-9_]+)/(\d+)/?$           /content/controller/$1/%{ENV:CONTENT_TYPE}/edit.php?id=$2 [QSA]
+RewriteRule ^([a-zA-Z0-9_]+)/(\d+)/edit/?$      /content/controller/$1/%{ENV:CONTENT_TYPE}/edit.php?id=$2 [QSA]
+
+# Delete entry
+#   /kpi/0      [DELETE] REST API
+#   /kpi/0/delete
+RewriteCond  %{REQUEST_METHOD}  "DELETE" [NC]
+RewriteRule ^([a-zA-Z0-9_]+)/(\d+)/?$           /content/controller/$1/%{ENV:CONTENT_TYPE}/delete.php?id=$2 [QSA]
+RewriteRule ^([a-zA-Z0-9_]+)/(\d+)/delete/?$    /content/controller/$1/%{ENV:CONTENT_TYPE}/delete.php?id=$2 [QSA]
+
+# Show entry
+#   /kpi/0
+RewriteRule ^([a-zA-Z0-9_]+)/(\d+)/?$           /content/controller/$1/%{ENV:CONTENT_TYPE}/show.php?id=$2 [QSA]
+
+# Redirect to main on missing
+ErrorDocument 404 /

@@ -1,0 +1,59 @@
+<?php
+# default menu links
+$menu = $this->menu ? $this->menu : [];
+// if (!in_array($_SERVER['REQUEST_URI'], ['/rooms', '/rooms/'])) {
+//     $menu = array_merge([
+//         ['url' => '/', 'title' => 'Списък на залите'],
+//     ], $menu);
+// }
+
+# default stylesheets
+$stylesheets = array_merge($this->stylesheets ? $this->stylesheets : [], [
+    'common.css',
+    'bootstrap.css',
+    'jquery.fancybox.min.css',
+]);
+
+# default scripts
+$scripts = array_merge($this->scripts ? $this->scripts : [], [
+    'jquery-3.4.1.min.js',
+    'cookie.umd.min.js',
+    'jquery.fancybox.min.js',
+    'common.js',
+]);
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <title><?= $this->title ?></title>
+    <?php foreach (($this->head_elements ? $this->head_elements : []) as $e) {
+        echo $e;
+    }
+    ?>
+
+    <?php foreach ($stylesheets as $e) { ?>
+        <link rel="stylesheet" type="text/css" href="/resources/stylesheets/<?= $e ?>" />
+    <?php } ?>
+
+    <?php foreach ($scripts as $e) { ?>
+        <script src="/resources/scripts/<?= $e ?>"></script>
+    <?php } ?>
+</head>
+
+<body>
+    <div id="header">
+        <div>
+            <h1><?= $this->title ?></h1>
+            <h4>
+                <?php
+                foreach ($menu as $m) {
+                    echo "<a href='$m[url]'>$m[title]</a>";
+                } ?>
+            </h4>
+        </div>
+    </div>
+    <div id="content">

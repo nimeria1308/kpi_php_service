@@ -1,0 +1,14 @@
+# Disable directory listing
+Options -Indexes
+
+# Set PHP include path
+php_value include_path "${PROJECT_DIR}/htdocs/content"
+
+# default timezone
+php_value date.timezone "Europe/Sofia"
+
+# do not print errors
+php_flag display_errors off
+
+# make errors strict
+php_value error_reporting E_STRICT;

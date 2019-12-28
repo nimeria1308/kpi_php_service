@@ -1,0 +1,44 @@
+<table class="entries">
+    <?php
+    if (count($this->kpis) > 0) {
+    ?>
+        <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Entries</th>
+            <th>Actions</th>
+        </tr>
+        <?php
+        foreach ($this->kpis as $kpi) {
+        ?>
+            <tr>
+                <td><?= $kpi->getId() ?></td>
+                <td><?= $kpi->getType() ?></td>
+                <td><a href="/kpi/<?= $kpi->getId() ?>"><?= $kpi->getName() ?></a></td>
+                <td><?= $kpi->count ?></td>
+                <td>
+                    <a href="/kpi/<?= $kpi->getId() ?>/edit" class="action">rename</a>
+                    <a href="/kpi/<?= $kpi->getId() ?>/delete" class="action danger" onclick="return confirm_action();">delete</a>
+                </td>
+            </tr>
+        <?php
+        }
+        ?>
+    <?php } else { ?>
+        <tr>
+            <td>
+                <p>
+                    No KPIs have been created
+                </p>
+            </td>
+        </tr>
+    <?php
+    }
+    ?>
+    <tr>
+        <td colspan="5" class="function_bar">
+            <a href="/kpi/new">CREATE</a>
+        </td>
+    </tr>
+</table>

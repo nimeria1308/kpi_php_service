@@ -1,0 +1,49 @@
+<table class="entries">
+    <?php
+    if (count($this->entries) > 0) {
+    ?>
+        <tr>
+            <th>ID</th>
+            <th>Timestamp</th>
+            <th>Value</th>
+            <th>Actions</th>
+        </tr>
+        <?php
+        foreach ($this->entries as $entry) {
+        ?>
+            <tr>
+                <td><?= $entry->getId() ?></td>
+                <td>
+                    <?php
+                    $t = $entry->getTimestamp();
+                    if ($t) {
+                        echo $t->format(DateTime::W3C);
+                    }
+                    ?>
+                </td>
+                <td><?= $entry->getData() ?></td>
+                <td>
+                    <a href="/kpi_entry/<?= $entry->getId() ?>/delete?kpi_id=<?= $entry->getKpi()->getId() ?>" class="action danger" onclick="return confirm_action();">delete</a>
+                </td>
+            </tr>
+        <?php
+        }
+        ?>
+    <?php } else { ?>
+        <tr>
+            <td>
+                <p>
+                    No KPIs entries have been created
+                </p>
+            </td>
+        </tr>
+
+    <?php
+    }
+    ?>
+    <tr>
+        <td colspan="4" class="function_bar">
+            <a href="/kpi_entry/new?kpi_id=<?= $this->kpi->getId() ?>">CREATE</a>
+        </td>
+    </tr>
+</table>

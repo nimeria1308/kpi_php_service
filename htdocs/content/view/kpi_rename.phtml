@@ -1,0 +1,24 @@
+<table class="entries">
+    <tr>
+        <td>
+            <form method="post">
+                <p>
+                    <label for="id">ID</label>
+                    <input type="text" value="<?= $this->kpi->getId() ?>" name="id" class="form-control" disabled="1" />
+                </p>
+                <p>
+                    <label for="type">Type</label>
+                    <input type="text" value="<?= $this->kpi->getType() ?>" name="type" class="form-control" disabled="1" />
+                </p>
+                <p>
+                    <label for="name">Name</label>
+                    <input type="text" value="<?= $this->kpi->getName() ?>" name="name" class="form-control" />
+                </p>
+                <p class="mb-0 text-right">
+                    <input type="button" class="btn" value="Cancel" onclick="window.location.href = '/kpi';" />
+                    <input type="submit" class="btn btn-primary" value="Rename" />
+                </p>
+            </form>
+        </td>
+    </tr>
+</table>

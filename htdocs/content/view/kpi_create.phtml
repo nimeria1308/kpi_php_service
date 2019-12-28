@@ -1,0 +1,23 @@
+<table class="entries">
+    <tr>
+        <td>
+            <form method="post">
+                <p>
+                    <label for="type">Type</label>
+                    <select name="type" class="form-control">
+                        <option value="number">Number</option>
+                        <option value="string">String</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" class="form-control" />
+                </p>
+                <p class="mb-0 text-right">
+                    <input type="button" class="btn" value="Cancel" onclick="window.location.href = '/kpi';" />
+                    <input type="submit" class="btn btn-primary" onclick="return check_kpi();" value="Create" />
+                </p>
+            </form>
+        </td>
+    </tr>
+</table>

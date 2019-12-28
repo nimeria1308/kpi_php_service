@@ -1,0 +1,22 @@
+<table class="entries">
+    <tr>
+        <td>
+            <form method="post">
+                <p>
+                    <label for="data">Value</label>
+                    <?php
+                    if ($this->kpi->getType() == "number") {
+                        echo '<input type="number" step="0.1" name="data" id="data" class="form-control" />';
+                    } else {
+                        echo '<input type="text" name="data" id="data" class="form-control" />';
+                    }
+                    ?>
+                </p>
+                <p class="mb-0 text-right">
+                    <input type="button" class="btn" value="Cancel" onclick="window.location.href = '/kpi/<?= $this->kpi->getId() ?>';" />
+                    <input type="submit" class="btn btn-primary" onclick="return check_kpi_entry();" value="Create" />
+                </p>
+            </form>
+        </td>
+    </tr>
+</table>
