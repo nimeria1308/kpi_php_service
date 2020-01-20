@@ -12,11 +12,11 @@
                 </p>
                 <p>
                     <label for="name">Name</label>
-                    <input type="text" value="<?= $this->kpi->getName() ?>" name="name" class="form-control" />
+                    <input type="text" value="<?= $this->kpi->getName() ?>" name="name" id="name" class="form-control" />
                 </p>
                 <p class="mb-0 text-right">
                     <input type="button" class="btn" value="Cancel" onclick="window.location.href = '/kpi';" />
-                    <input type="submit" class="btn btn-primary" value="Rename" />
+                    <input type="submit" class="btn btn-primary" onclick="return check_kpi();" value="Rename" />
                 </p>
             </form>
         </td>
